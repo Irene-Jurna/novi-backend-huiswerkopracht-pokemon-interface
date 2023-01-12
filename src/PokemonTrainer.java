@@ -6,8 +6,8 @@ public class PokemonTrainer {
     private List<Pokemon> pokemons;
 
     public PokemonTrainer(String name, List<Pokemon> pokemons) {
-        name = name;
-        pokemons = pokemons;
+        this.name = name;
+        this.pokemons = pokemons;
     }
 
     public String getName() {

@@ -27,6 +27,7 @@ public class FirePokemon extends Pokemon {
     }
 
     // Kan je hier Pokemon pokemon vervangen voor this?
+    // Beter .concat-method gebruiken?
     void inferno(Pokemon pokemon, Pokemon gymPokemon) {
         System.out.println(pokemon.getName() + " attacks " + gymPokemon.getName() + " with inferno");
     }
