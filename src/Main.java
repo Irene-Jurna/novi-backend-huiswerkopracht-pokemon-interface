@@ -3,8 +3,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    // Deze 4 constanten worden gebruikt om tekst met kleur te printen in de console.
-    // Hier hoef je niks mee te doen
+    // Kleurenset
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
     public static final String ANSI_RED = "\u001B[31m";
@@ -37,8 +36,5 @@ public class Main {
         if (speler_A.nextLine().equals("yes")) {
             pokemonGym.enteredTheGym(player1);
         }
-
     }
-
-
 }
