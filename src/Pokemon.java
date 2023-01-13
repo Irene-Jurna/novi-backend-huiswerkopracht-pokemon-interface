@@ -1,11 +1,12 @@
-// Een abstract super klasse met 5 private final variabelen, 1 private variabele, 1 constructor, 6 getters en 1 setter;
+// Opdracht: Een abstract super klasse met 5 private final variabelen, 1 private variabele, 1 constructor, 6 getters en 1 setter;
 
 import java.util.List;
 
 // 1 abstract super klasse
 public abstract class Pokemon {
 
-    // 5 private final variabelen + 1 private variabele
+    // Opdracht: 5 private final variabelen + 1 private variabele
+    // Note: ik heb 4 private final variabelen en 2 private variabelen. Hoe had ik hier 5 private final en 1 private van kunnen maken?
     private final int level;
     private final String food;
     private final String sound;
@@ -51,8 +52,4 @@ public abstract class Pokemon {
     public void setHp(int hp) {
         this.hp = hp;
     }
-
-    // Abstract methode (is dit dan ook een getter?)
-    public abstract List<String> getAttacks();
-
 }

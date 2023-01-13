@@ -1,6 +1,6 @@
 import java.util.List;
 
-// Interface met 11 methodes
+// Opdracht: een interface met 11 methodes
 public interface PokemonGym {
 
     // Voor interfaces heb je geen access modifiers nodig

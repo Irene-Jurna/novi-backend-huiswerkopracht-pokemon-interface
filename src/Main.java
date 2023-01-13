@@ -2,6 +2,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+// Opdracht: Een main-klasse met een main-methode
+
+/* Vragen over de opdracht:
+
+1) Waar zijn de pokemons van de GymOwner gedefinieerd?
+2) Ik heb nu voor mijn gevoel veel dezelfde code geschreven om health points af te trekken en te printen. Kan dit korter? (bijv. door methodes te gebruiken?) En zo ja, hoe?
+
+ */
+
 public class Main {
     // Kleurenset
     public static final String ANSI_RESET = "\u001B[0m";
@@ -19,9 +28,7 @@ public class Main {
 
     private static List<Pokemon> pokemons = Arrays.asList(charizard, blastoise, venusaur, ditto, raichu, gyarados);
 
-
-    // Los in de main methode alle foutmeldigen op door (abstracte) klassen met variabelen en methoden te maken (en soms een import).
-    // In de main methode en de Main klasse hoef je niks te veranderen.
+    // Main-methode
     public static void main(String[] args) {
         Scanner speler_A = new Scanner(System.in);
         PokemonGymImpl pokemonGym = new PokemonGymImpl(pokemons);
