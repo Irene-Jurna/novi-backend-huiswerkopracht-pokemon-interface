@@ -1,4 +1,3 @@
-import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,8 +27,8 @@ public class FirePokemon extends Pokemon {
         System.out.println(pokemon.getName() + " attacks " + gymPokemon.getName() + " with inferno");
         switch (gymPokemon.getType()) {
             case "grass":
-                gymPokemon.setHp(gymPokemon.getHp() -60);
-                System.out.println(gymPokemon.getName() + " loses 60 health points!");
+                gymPokemon.setHp(gymPokemon.getHp() -50);
+                System.out.println(gymPokemon.getName() + " loses 50 health points!");
                 break;
 
             case "water":

@@ -52,4 +52,13 @@ public abstract class Pokemon {
     public void setHp(int hp) {
         this.hp = hp;
     }
+
+    // Bonusopdracht 1)
+    public void foodBoost(Pokemon pokemon, String food) {
+        if (food.equalsIgnoreCase(pokemon.getFood())) {
+            pokemon.setHp(pokemon.getHp() + 30);
+        }
+        System.out.println(pokemon.getName() + " eats " + pokemon.getFood());
+        System.out.println(pokemon.getName() + " boosts it's health points to " + pokemon.getHp());
+    }
 }

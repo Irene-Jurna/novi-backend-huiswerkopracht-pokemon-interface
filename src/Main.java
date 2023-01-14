@@ -6,8 +6,9 @@ import java.util.Scanner;
 
 /* Vragen over de opdracht:
 
-1) Waar zijn de pokemons van de GymOwner gedefinieerd?
+1) Waar zijn de pokemons van de GymOwner gedefinieerd? Zijn dat nu dezelfde als die ik krijg als PokemonTrainer (hieronder gedefinieerd in main)? Zo ja, hoe kan ik de GymOwner andere pokemons toekennen?
 2) Ik heb nu voor mijn gevoel veel dezelfde code geschreven om health points af te trekken en te printen. Kan dit korter? (bijv. door methodes te gebruiken?) En zo ja, hoe?
+3) Als ik als PokemonTrainer win, loopt het programma goed. Maar als de PokemonGymOwner wint, dan loopt het programma 1 ronde teveel door (ik zie wel dat mijn pokemon's health points in de min staan, maar kan nog wel 1 ronde spelen voordat het programma zegt dat ik verslagen ben). Hoe kan ik deze fout oplossen?
 
  */
 
@@ -30,6 +31,10 @@ public class Main {
 
     // Main-methode
     public static void main(String[] args) {
+
+        // Test Bonusopdracht 1 (zie methode in abstracte klasse Pokemon)
+//        charizard.foodBoost(charizard, charizard.getFood());
+
         Scanner speler_A = new Scanner(System.in);
         PokemonGymImpl pokemonGym = new PokemonGymImpl(pokemons);
         System.out.println("First player please enter your name: ");

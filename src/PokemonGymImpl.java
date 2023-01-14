@@ -7,9 +7,10 @@ import java.util.ArrayList;
 // Opdracht: Los in deze klasse alle foutmeldingen op door (abstracte) klassen met variabelen en methodes te maken en een interface met methodes (en soms een import).
 public class PokemonGymImpl implements PokemonGym {
 
-    // Vraag: moet deze variabele ook een getter en setter krijgen?
+    // Vraag: is dit een instance variabele en moet die dan ook een getter en setter krijgen?
     List<Pokemon> pokemons;
 
+    // Constructor
     public PokemonGymImpl(List<Pokemon> pokemons) {
         this.pokemons = pokemons;
     }
@@ -153,6 +154,7 @@ public class PokemonGymImpl implements PokemonGym {
         GrassPokemon grass;
         WaterPokemon water;
 
+        // Locale.ROOT: https://www.w3resource.com/java-tutorial/string/string_tolowercase.php
         String choosenAttack = attack.toLowerCase(Locale.ROOT);
 
         switch (pokemon.getType()) {
@@ -246,22 +248,44 @@ public class PokemonGymImpl implements PokemonGym {
         }
     }
 
+    // Uitgecomment voor Bonusopdracht 2, zie onder.
+//    @Override
+//    public void attackOrChange(Pokemon pokemon, Pokemon gymPokemon, PokemonTrainer trainer, PokemonGymOwner gym) {
+//        Scanner speler_A = new Scanner(System.in);
+//
+//        System.out.println("Do you want to attack or change your pokemon?");
+//        System.out.println("Type a for attack or c for change");
+//        String choice = speler_A.nextLine();
+//
+//        if (choice.equalsIgnoreCase("a")) {
+//            String attack = chooseAttackPlayer(pokemon);
+//            performAttackPlayer(pokemon, gymPokemon, attack);
+//        } else {
+//            pokemon = choosePokemon(trainer);
+//            attackOrChange(pokemon, gymPokemon, trainer, gym);
+//            fightRound(trainer, gym, pokemon, gymPokemon);
+//        }
+//    }
+
+    // Bonusopdracht 2)
+    // Note: ik heb de naam van de methode hetzelfde gelaten, zodat je de code kunt runnen met zowel de Override van de basisopdracht als de bonusopdracht. Bij gebruik van alleen de bonusopdracht override, zou ik de naam veranderen in FeedOrAttackOrChange
     @Override
     public void attackOrChange(Pokemon pokemon, Pokemon gymPokemon, PokemonTrainer trainer, PokemonGymOwner gym) {
         Scanner speler_A = new Scanner(System.in);
 
-        System.out.println("Do you want to attack or change your pokemon?");
-        System.out.println("Type a for attack or c for change");
+        System.out.println("Do you want to feed, attack or change your pokemon?");
+        System.out.println("Type f for feed, a for attack or c for change");
         String choice = speler_A.nextLine();
 
         if (choice.equalsIgnoreCase("a")) {
             String attack = chooseAttackPlayer(pokemon);
             performAttackPlayer(pokemon, gymPokemon, attack);
-        } else {
+        } else if (choice.equalsIgnoreCase("c")) {
             pokemon = choosePokemon(trainer);
             attackOrChange(pokemon, gymPokemon, trainer, gym);
             fightRound(trainer, gym, pokemon, gymPokemon);
+        } else if (choice.equalsIgnoreCase("f")) {
+            pokemon.foodBoost(pokemon, pokemon.getFood());
         }
     }
-
 }
