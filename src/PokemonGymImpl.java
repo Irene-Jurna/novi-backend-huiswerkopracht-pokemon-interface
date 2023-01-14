@@ -1,11 +1,16 @@
 import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
+import java.util.Random;
+import java.util.ArrayList;
 
-// Los in deze klasse alle foutmeldingen op door (abstracte) klassen met variabelen en methodes te maken en een interface met methodes (en soms een import).
+// Opdracht: Los in deze klasse alle foutmeldingen op door (abstracte) klassen met variabelen en methodes te maken en een interface met methodes (en soms een import).
 public class PokemonGymImpl implements PokemonGym {
 
-
+    // Vraag: is dit een instance variabele en moet die dan ook een getter en setter krijgen?
     List<Pokemon> pokemons;
 
+    // Constructor
     public PokemonGymImpl(List<Pokemon> pokemons) {
         this.pokemons = pokemons;
     }
@@ -15,17 +20,16 @@ public class PokemonGymImpl implements PokemonGym {
         PokemonGymOwner gymOwner = new PokemonGymOwner("Brock", "Pewter City", pokemons);
         System.out.println("You have entered the " + gymOwner.getTown() + " gym");
         System.out.println("In front of you stands a pokemontrainer");
-        System.out.println(Main.ANSI_RED + gymOwner.getName() + Main.ANSI_RESET +": Hello stranger, I'm " + gymOwner.getName() + ", the owner of this gym. Who are you?");
+        System.out.println(Main.ANSI_RED + gymOwner.getName() + Main.ANSI_RESET + ": Hello stranger, I'm " + gymOwner.getName() + ", the owner of this gym. Who are you?");
         System.out.println(Main.ANSI_GREEN + player1.getName() + Main.ANSI_RESET + ": I'm " + player1.getName() + " and i'm here to challenge you for a battle");
-        System.out.println(Main.ANSI_RED + gymOwner.getName() + Main.ANSI_RESET +": So you're after my badge too, lets fight!!!");
+        System.out.println(Main.ANSI_RED + gymOwner.getName() + Main.ANSI_RESET + ": So you're after my badge too, lets fight!!!");
 
         Pokemon gymPokemon = chooseGymPokemon(gymOwner);
-        System.out.println(Main.ANSI_RED + gymOwner.getName() + Main.ANSI_RESET +": I'll choose you, " + gymPokemon.getName());
+        System.out.println(Main.ANSI_RED + gymOwner.getName() + Main.ANSI_RESET + ": I'll choose you, " + gymPokemon.getName());
         Pokemon pokemon = choosePokemon(player1);
         System.out.println(Main.ANSI_GREEN + player1.getName() + Main.ANSI_RESET + ": I'll choose you, " + pokemon.getName());
 
         fightRound(player1, gymOwner, pokemon, gymPokemon);
-
     }
 
     @Override
@@ -58,27 +62,33 @@ public class PokemonGymImpl implements PokemonGym {
             attackOrChange(pokemon, gymPokemon, trainer, owner);
 
         }
-        if(pokemon.getHp() <= 0){
+        if (pokemon.getHp() <= 0) {
             System.out.println(gymPokemon.getName() + " has defeated " + pokemon.getName());
-        } else if (gymPokemon.getHp() <= 0){
+        } else if (gymPokemon.getHp() <= 0) {
             System.out.println(pokemon.getName() + " has defeated " + gymPokemon.getName());
         }
 
         System.out.println("Would you like to keep playing? yes or no");
         String keepPlaying = speler_A.nextLine();
-        if (keepPlaying.equals("yes")){
+        if (keepPlaying.equals("yes")) {
             enteredTheGym(trainer);
         } else {
             System.out.println("Thank you for playing");
         }
     }
 
+    /* Stappenplan Bonusopdracht 3:
+    A) Als een Pokemon verslagen is, moet die uit de lijst met pokemons gehaald worden (pokemons.remove?)
+    B) Als de speler nog een ronde wil spelen, hoeft die niet nog een keer enteredTymGym te doorlopen. In plaats daarvan meteen nieuwe pokemon kiezen uit de overgebleven pokemons (nieuwe methode voor maken, continueFight?)
+    C) Spel vervolgen zoals het nu is
+     */
+
     @Override
-    public Pokemon chooseGymPokemon(PokemonGymOwner gymOwner){
+    public Pokemon chooseGymPokemon(PokemonGymOwner gymOwner) {
         Random rand = new Random();
         List<Pokemon> pokemons = new ArrayList<>();
         for (Pokemon p : gymOwner.getPokemons()) {
-            if(p.getHp() > 0 ){
+            if (p.getHp() > 0) {
                 pokemons.add(p);
             }
         }
@@ -88,11 +98,11 @@ public class PokemonGymImpl implements PokemonGym {
     }
 
     @Override
-    public Pokemon choosePokemon(PokemonTrainer trainer){
+    public Pokemon choosePokemon(PokemonTrainer trainer) {
         Scanner speler_A = new Scanner(System.in);
         List<Pokemon> pokemons = new ArrayList<>();
         for (Pokemon p : trainer.getPokemons()) {
-            if(p.getHp() > 0 ){
+            if (p.getHp() > 0) {
                 pokemons.add(p);
             }
         }
@@ -105,14 +115,14 @@ public class PokemonGymImpl implements PokemonGym {
     }
 
     @Override
-    public int randomAttackByGymOwner(){
+    public int randomAttackByGymOwner() {
         Random rand = new Random();
         int maxAttacks = 4;
         return rand.nextInt(maxAttacks);
     }
 
     @Override
-    public String chooseAttackPlayer(Pokemon p){
+    public String chooseAttackPlayer(Pokemon p) {
         Scanner speler_A = new Scanner(System.in);
         String type = p.getType();
         switch (type) {
@@ -144,12 +154,13 @@ public class PokemonGymImpl implements PokemonGym {
     }
 
     @Override
-    public void performAttackPlayer(Pokemon pokemon, Pokemon gymPokemon, String attack){
+    public void performAttackPlayer(Pokemon pokemon, Pokemon gymPokemon, String attack) {
         FirePokemon fire;
         ElectricPokemon electric;
         GrassPokemon grass;
         WaterPokemon water;
 
+        // Locale.ROOT: https://www.w3resource.com/java-tutorial/string/string_tolowercase.php
         String choosenAttack = attack.toLowerCase(Locale.ROOT);
 
         switch (pokemon.getType()) {
@@ -193,7 +204,7 @@ public class PokemonGymImpl implements PokemonGym {
     }
 
     @Override
-    public void gymOwnerAttacks(Pokemon gymPokemon, Pokemon pokemon){
+    public void gymOwnerAttacks(Pokemon gymPokemon, Pokemon pokemon) {
         FirePokemon fire;
         ElectricPokemon electric;
         GrassPokemon grass;
@@ -243,22 +254,44 @@ public class PokemonGymImpl implements PokemonGym {
         }
     }
 
+    // Uitgecomment voor Bonusopdracht 2, zie onder.
+//    @Override
+//    public void attackOrChange(Pokemon pokemon, Pokemon gymPokemon, PokemonTrainer trainer, PokemonGymOwner gym) {
+//        Scanner speler_A = new Scanner(System.in);
+//
+//        System.out.println("Do you want to attack or change your pokemon?");
+//        System.out.println("Type a for attack or c for change");
+//        String choice = speler_A.nextLine();
+//
+//        if (choice.equalsIgnoreCase("a")) {
+//            String attack = chooseAttackPlayer(pokemon);
+//            performAttackPlayer(pokemon, gymPokemon, attack);
+//        } else {
+//            pokemon = choosePokemon(trainer);
+//            attackOrChange(pokemon, gymPokemon, trainer, gym);
+//            fightRound(trainer, gym, pokemon, gymPokemon);
+//        }
+//    }
+
+    // Bonusopdracht 2)
+    // Note: ik heb de naam van de methode hetzelfde gelaten, zodat je de code kunt runnen met zowel de Override van de basisopdracht als de bonusopdracht. Bij gebruik van alleen de bonusopdracht override, zou ik de naam veranderen in FeedOrAttackOrChange
     @Override
-    public void attackOrChange(Pokemon pokemon, Pokemon gymPokemon, PokemonTrainer trainer, PokemonGymOwner gym){
+    public void attackOrChange(Pokemon pokemon, Pokemon gymPokemon, PokemonTrainer trainer, PokemonGymOwner gym) {
         Scanner speler_A = new Scanner(System.in);
 
-        System.out.println("Do you want to attack or change your pokemon?");
-        System.out.println("Type a for attack or c for change");
+        System.out.println("Do you want to feed, attack or change your pokemon?");
+        System.out.println("Type f for feed, a for attack or c for change");
         String choice = speler_A.nextLine();
 
         if (choice.equalsIgnoreCase("a")) {
             String attack = chooseAttackPlayer(pokemon);
             performAttackPlayer(pokemon, gymPokemon, attack);
-        } else {
+        } else if (choice.equalsIgnoreCase("c")) {
             pokemon = choosePokemon(trainer);
             attackOrChange(pokemon, gymPokemon, trainer, gym);
             fightRound(trainer, gym, pokemon, gymPokemon);
+        } else if (choice.equalsIgnoreCase("f")) {
+            pokemon.foodBoost(pokemon, pokemon.getFood());
         }
     }
-
 }
