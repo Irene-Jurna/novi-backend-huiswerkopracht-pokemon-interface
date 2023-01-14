@@ -1,7 +1,5 @@
 // Opdracht: Een abstract super klasse met 5 private final variabelen, 1 private variabele, 1 constructor, 6 getters en 1 setter;
 
-import java.util.List;
-
 // 1 abstract super klasse
 public abstract class Pokemon {
 

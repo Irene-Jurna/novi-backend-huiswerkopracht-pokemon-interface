@@ -20,6 +20,7 @@ public class Main {
     public static final String ANSI_GREEN = "\u001B[32m";
 
     // Dit zijn de Pokemons die je tot je beschikking hebt
+    // Waarom worden deze boven de main-methode gezet? 
     private static final FirePokemon charizard = new FirePokemon("Charrizard", 76, 150, "firenougats", "GRRRRRRRRRRRRRRR");
     private static final WaterPokemon blastoise = new WaterPokemon("Blastoise", 40, 110, "Pokeflakes", "Blaaaaasssssstooooiiiiissss");
     private static final GrassPokemon venusaur = new GrassPokemon("Venusaur", 50, 135, "Pokeleafs", "Veeeeeeeeennnnnuuuuuusaur");

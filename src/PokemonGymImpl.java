@@ -77,6 +77,12 @@ public class PokemonGymImpl implements PokemonGym {
         }
     }
 
+    /* Stappenplan Bonusopdracht 3:
+    A) Als een Pokemon verslagen is, moet die uit de lijst met pokemons gehaald worden (pokemons.remove?)
+    B) Als de speler nog een ronde wil spelen, hoeft die niet nog een keer enteredTymGym te doorlopen. In plaats daarvan meteen nieuwe pokemon kiezen uit de overgebleven pokemons (nieuwe methode voor maken, continueFight?)
+    C) Spel vervolgen zoals het nu is
+     */
+
     @Override
     public Pokemon chooseGymPokemon(PokemonGymOwner gymOwner) {
         Random rand = new Random();
